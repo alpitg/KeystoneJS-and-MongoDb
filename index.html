@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>
+        Socket.IO
+    </title>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var socket = io.connect(window.location.host);
+
+        $(document).ready(function () {
+            $('#sendBt').click(function () {
+             
+                //TODO: Receive Ack from server -- emit(name, data, function(ack){})
+                socket.emit('acknowledgement', $('#field').val(), function (ack) {
+                    alert($('#field').val() + ' ' + ack);
+                });
+            });
+        });
+
+    </script>
+
+    <form>
+        <input type="textbox" id="field">
+    </form>
+    <button id="sendBt">Send</button>
+
+</body>
+
+</html>
